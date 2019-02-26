@@ -8,7 +8,7 @@ import org.junit.Test
 
 class FuncTests {
 
-    var html2JSON: HTML2JSON? = null
+    private var html2JSON: HTML2JSON? = null
 
     @Before
     fun createConverter() {
@@ -34,5 +34,11 @@ class FuncTests {
     fun testWrongHTML() {
         val jsonResult = this.html2JSON?.generateJSON("<HTML><a></a>")
         Assert.fail("Wrong html content must throw exception")
+    }
+
+    @Test
+    fun testHtmlElementProperties() {
+        val jsonResult = this.html2JSON?.generateJSON("<HTML><a href=\"www.index.hu\" ></a></HTML>")
+        println(jsonResult)
     }
 }
