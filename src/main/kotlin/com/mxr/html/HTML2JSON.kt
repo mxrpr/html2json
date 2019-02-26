@@ -36,7 +36,7 @@ class HTML2JSON {
                         stack.add(tmpElement)
                     }
                 }
-                TokenType.TEXT -> stack.last().addChildNode(Node(NodeType.NODE, token))
+                TokenType.TEXT -> stack.last().addChildNode(TextNode(token))
                 TokenType.ROOT -> {/*do nothing here*/
                 }
             }
@@ -61,6 +61,8 @@ class HTML2JSON {
                 val htmlElement = Token(TokenType.HTML, stringElement)
                 result.add(htmlElement)
             } else {
+                if (stringElement.trim().isEmpty())
+                    continue
                 val htmlElement = Token(TokenType.TEXT, stringElement)
                 result.add(htmlElement)
             }
@@ -75,11 +77,13 @@ class HTML2JSON {
      * @return List List of HTML elements
      */
     fun parseHTML(str: String): List<String> {
-        val regexp = "<.+?>|.?[^<]".toRegex()
+        val regexpStr = "<.+?>|[^<]*"
+        val regexp = regexpStr.toRegex()
         val sequence: Sequence<MatchResult> = regexp.findAll(str)
         val result = mutableListOf<String>()
-        for (element in sequence)
+        for (element in sequence) {
             result.add(element.value)
+        }
 
         return result
     }
