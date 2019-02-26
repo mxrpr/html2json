@@ -1,7 +1,7 @@
 import com.mxr.html.*
 
 fun main(args: Array<String>) {
-    val text = "<HTML><BODY><a></a></BODY></HTML>";
+    val text = "<HTML><BODY><a href=\"www.index.hu\"> this is a long text </a> <an> another text </an><span>span text</span></BODY></HTML>";
 
     val html2json = HTML2JSON()
 
