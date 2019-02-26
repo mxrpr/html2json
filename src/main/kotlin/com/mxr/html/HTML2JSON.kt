@@ -1,5 +1,8 @@
 package com.mxr.html
 
+import java.io.File
+import java.io.FileNotFoundException
+
 class HTML2JSON {
 
     /**
@@ -88,6 +91,17 @@ class HTML2JSON {
         return result
     }
 
+    fun parseHTMLFromFile(fileName: String) {
+        val file = File(fileName)
+        if (!file.exists()) {
+            println("File $fileName does not exists")
+            throw FileNotFoundException("$fileName")
+        }
+
+        val content = file.inputStream().bufferedReader().use { it.readLine() }
+        this.parseHTML(content)
+
+    }
     /**
      * Generates the JSON from HTML
      */
