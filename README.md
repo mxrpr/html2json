@@ -1,2 +1,2 @@
-# html2json
+# `annotation.kt`
 Convert html to JSON
