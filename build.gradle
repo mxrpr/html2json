@@ -7,6 +7,9 @@ group 'com'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+ ext {
+     cucumberVersion = '2.3.1'
+ }
 
 repositories {
     mavenCentral()
@@ -14,6 +17,9 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "io.cucumber:cucumber-java8:${cucumberVersion}"
+    implementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
